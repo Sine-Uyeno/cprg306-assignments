@@ -26,7 +26,6 @@ export default function ItemList({items}) {
 
   return (
         <div>
-          <button onClick={() => forceRefresh} className="bg-orange-600 text-black rounded p-2 m-2">Refresh</button>
           <button onClick={() => changeSort("name")} className={buttons[0]}>Sort by Name</button>
           <button onClick={() => changeSort("category")} className={buttons[1]}>Sort by Category</button>
           {items.map((value) => (
