@@ -13,10 +13,15 @@ export function MealIdeas( {ingredient} ) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setMeals( data.meals );
+            if (data.meals != null) setMeals( data.meals );
+            
+            else setMeals([]);
+
+            if (ingredient.length === 0) setMeals([]);
+            
             
             setError(null);
-            } 
+            }
         catch (e) {
             setError(e.message);
         }
@@ -25,8 +30,8 @@ export function MealIdeas( {ingredient} ) {
 
     useEffect(() => {
         fetchMealIdeas(ingredient);
-        console.log(meals)
-    }, []);
+        console.log(ingredient)
+    }, [meals]);
 
     return (
         <div>

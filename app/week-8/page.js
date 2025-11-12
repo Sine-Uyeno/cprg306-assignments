@@ -6,6 +6,8 @@ import itemsData from "./items.json";
 import { MealIdeas } from "./meal-ideas";
 
 
+
+
 export default function Page() {
 
   const [items, setItems] = useState(
@@ -18,19 +20,25 @@ export default function Page() {
     items.push(userItem);
   };
 
-  const handleItemSelect = () => {
-    console.log("aaaa");
+  const handleItemSelect = (name) => {
+    let nameEdit = name;
+    nameEdit = nameEdit.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+    nameEdit = nameEdit.split(",")[0]
+    setSelectedItemName(nameEdit);
   }
+
+  console.log("handle item select");
+  console.log(handleItemSelect);
 
   return (
     <main>
       <h1 className="text-4xl font-sans italic">Shopping List</h1>
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div>
-          <NewItem onAddItem={handleAddItem} onItemSelect={handleItemSelect}/>
-          <ItemList items={items}/>
+          <NewItem onAddItem={handleAddItem} />
+          <ItemList items={items} onItemSelect={handleItemSelect}/>
         </div>
-        <MealIdeas ingredient="egg"/>
+        <MealIdeas ingredient={selectedItemName}/>
         
       </div>
       

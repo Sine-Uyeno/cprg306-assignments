@@ -24,6 +24,9 @@ export default function ItemList({items, onItemSelect}) {
     items.sort(function(a, b){return a.category.localeCompare(b.category)}) 
   }
 
+  console.log("on item select");
+  console.log(onItemSelect);
+
   return (
         <div>
           <button onClick={() => changeSort("name")} className={buttons[0]}>Sort by Name</button>
